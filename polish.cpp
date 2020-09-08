@@ -19,7 +19,7 @@ int main() {
     double first;
     double second;
 
-    do {
+    while (oper != 'q') {
         std::cout << "Enter the expression:";
         std::cin >> oper;
         if(oper == 'q') {
@@ -45,7 +45,6 @@ int main() {
                 break;
         }
     }
-    while (oper != 'q');
     return 0;   
 }
 
