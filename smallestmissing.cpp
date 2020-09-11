@@ -20,8 +20,11 @@ void countingSort(std::vector<int>& nums, int min, int max) {
     nums = output;
 }
 
-int findSmallestMissing(std::vector<int> sortedNums) {
+int findSmallestMissing(std::vector<int> sortedNums, int max) {
     for(int i = 0; i < sortedNums.size(); i++) {
+        if(sortedNums.at(i) == max) {
+            return max + 1;
+        }
         if((sortedNums.at(i + 1) - sortedNums.at(i)) > 1) {
             return (sortedNums.at(i) + 1);
         }
@@ -39,6 +42,7 @@ int main() {
     std::cout << "How many numbers? ";
     std::cin >> amountNums;
     std::vector<int> numbers;
+    std::cout << std::endl;
     std::cout << "Please enter the numbers ";
     std::cin >> nextNum;
 
@@ -56,9 +60,9 @@ int main() {
         numbers.push_back(nextNum);
     }
 
-    std::cout << "The smallest missing number is ";
+    std::cout << std::endl << "The smallest missing number is ";
     countingSort(numbers, minimum, maximum);
-    std::cout << findSmallestMissing(numbers) << std::endl;
+    std::cout << findSmallestMissing(numbers, maximum) << std::endl;
 
     return 0;
 }
