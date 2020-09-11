@@ -19,3 +19,6 @@ This program takes a user n value, then a user x value. It then prints the parti
 
 ## Quadratic
 This program takes a value from the user for a, b, and c, then uses those values to calculate solutions via the quadratic formula.
+
+## Matrix-Vector
+This program takes 3 vector coefficients and multiplies them as a matrix with a predefined ascending 3x3 matrix.
