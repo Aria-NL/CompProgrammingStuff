@@ -1,35 +1,20 @@
 #include <iostream>
 #include <vector>
 
-void countingSort(std::vector<int>& nums, int min, int max) {
-    int range = max - min + 1;
-    
-    std::vector<int> counts(range);
-    std::vector<int> output(nums.size());
-    
-    for(int i = 0; i < nums.size(); i++) {
-        counts.at(nums.at(i) - min)++;
-    }
-    for(int i = 1; i < counts.size(); i++) {
-        counts.at(i) += counts.at(i - 1);
-    }
-    for(int i = nums.size() - 1; i >= 0; i--) {
-        output.at(counts.at(nums.at(i) - min) - 1) = nums[i];
-        counts.at(nums.at(i) - min)--;
-    }
-    nums = output;
-}
 
-int findSmallestMissing(std::vector<int> sortedNums, int max) {
-    for(int i = 0; i < sortedNums.size(); i++) {
-        if(sortedNums.at(i) == max) {
-            return max + 1;
+int findSmallestMissing(std::vector<int> numbers, int min) {
+    int iterate = 0;
+    int candidate = min + 1;
+    while(iterate < numbers.size()) {
+        if(numbers.at(iterate) == candidate) {
+            candidate++;
+            iterate = 0;
         }
-        if((sortedNums.at(i + 1) - sortedNums.at(i)) > 1) {
-            return (sortedNums.at(i) + 1);
+        else {
+            iterate++;
         }
     }
-    return 0; //make compiler happy
+    return candidate;
 }
 
 int main() {
@@ -61,8 +46,7 @@ int main() {
     }
 
     std::cout << std::endl << "The smallest missing number is ";
-    countingSort(numbers, minimum, maximum);
-    std::cout << findSmallestMissing(numbers, maximum) << std::endl;
+    std::cout << findSmallestMissing(numbers, minimum) << std::endl;
 
     return 0;
 }
