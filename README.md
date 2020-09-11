@@ -22,3 +22,6 @@ This program takes a value from the user for a, b, and c, then uses those values
 
 ## Matrix-Vector
 This program takes 3 vector coefficients and multiplies them as a matrix with a predefined ascending 3x3 matrix.
+
+## Smallest Missing
+This program accepts a size of a vector, vector values, then sorts that vector and finds the smallest missing value.
