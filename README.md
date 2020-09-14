@@ -28,3 +28,7 @@ This program takes 3 vector coefficients and multiplies them as a matrix with a 
 
 ## Smallest Missing
 This program accepts a size of a vector, vector values, then sorts that vector and finds the smallest missing value.
+
+## Day In Year
+This program is slightly different; it consists of a function file and a main file. Both must be used and compiled together to function properly. It does calculations to determine the date in days from a day/month/year format. No user input is allowed unless more test cases are added to the main file.
+
