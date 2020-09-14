@@ -44,13 +44,12 @@ int main() {
 
     try {
         std::cout << "Please enter the values of a, b, and c: ";
-        std::cin >> userA;
+        std::cin >> userA >> userB >> userC;
+        if(std::cin.fail()) {
+            throw std::runtime_error("Malformed user input");
+        }
         if(userA == 0) {
             throw std::runtime_error("a must not be zero");
-        }
-        std::cin >> userB >> userC;
-        if(typeid(userA) != typeid(double) || typeid(userB) != typeid(double) || typeid(userC) != typeid(double)) {
-            throw std::runtime_error("Malformed user input");
         }
         result = findSolutions((findDiscrim(userA,userB,userC)),userA,userB);
         switch(result.size()) {
