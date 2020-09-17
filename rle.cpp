@@ -5,6 +5,9 @@
 
 std::string compress(std::string toCompress) {
     std::string compressed;
+    if(toCompress.empty()) {
+        return toCompress;
+    }
     char currentChar = toCompress.at(0);
     int countChar = 1;
     for(int i = 1; i < toCompress.length(); i++) {
