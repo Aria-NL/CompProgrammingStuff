@@ -32,3 +32,5 @@ This program accepts a size of a vector, vector values, then sorts that vector a
 ## Day In Year
 This program is slightly different; it consists of a function file and a main file. Both must be used and compiled together to function properly. It does calculations to determine the date in days from a day/month/year format. No user input is allowed unless more test cases are added to the main file.
 
+## Run-Length Encoding (RLE)
+This program takes a string of all-lowercase letters and no numbers from the user and compresses it using Run-Length Encoding.
