@@ -4,7 +4,6 @@
 
 int dayInYear(int day, int month, int year) {
     std::vector<int> daysPerMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    bool isLeapYear;
     int totalDays = 0;
 
     for(int i = 0; i < month - 1; i++) {
