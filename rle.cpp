@@ -5,12 +5,12 @@
 
 std::string compress(std::string toCompress) {
     std::string compressed;
-    if(toCompress.empty()) {
+    if(toCompress.empty()) { // edge case - if empty input, just send it back
         return toCompress;
     }
     char currentChar = toCompress.at(0);
     int countChar = 1;
-    for(int i = 1; i < toCompress.length(); i++) {
+    for(int i = 1; i < toCompress.length(); i++) { // iterate along string, checking for new char each time
         if(currentChar != toCompress.at(i)) {
             std::cout << countChar << currentChar;
             currentChar = toCompress.at(i);
@@ -30,7 +30,7 @@ int main() {
         std::cout << "Enter the data to be compressed: ";
         std::cin >> toCompress;
         for(int i = 0; i < toCompress.length(); i++) {
-            if((toCompress.at(i) > 64 && toCompress.at(i) < 91) || (toCompress.find_first_of("0123456789") != std::string::npos)) {
+            if((toCompress.at(i) > 64 && toCompress.at(i) < 91) || (toCompress.find_first_of("0123456789") != std::string::npos)) { // detect capital letters and numbers
                 throw std::runtime_error("invalid input");
             }
         }
