@@ -34,3 +34,6 @@ This program is slightly different; it consists of a function file and a main fi
 
 ## Run-Length Encoding (RLE)
 This program takes a string of all-lowercase letters and no numbers from the user and compresses it using Run-Length Encoding.
+
+## Merge Sort
+This isn't a program - rather, a template function for merge sort. This should work with all the basic datatypes in C++, and takes a vector of values, the beginning point, and the ending point.
