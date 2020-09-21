@@ -11,8 +11,7 @@ template <typename T> void sorting(vector<T> &data, int i, int j, int k) {
    mergedSize = k - i + 1;
    leftPos = i;                               // Initialize left partition position
    rightPos = j + 1;                          // Initialize right partition position
-   vector<T> mergedNumbers;       // Dynamically allocates temporary array
-                                              // for merged data
+   vector<T> mergedNumbers;
    
    // Add smallest element from left or right partition to merged data
    while (leftPos <= j && rightPos <= k) {
