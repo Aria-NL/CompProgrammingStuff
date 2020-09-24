@@ -37,3 +37,6 @@ This program takes a string of all-lowercase letters and no numbers from the use
 
 ## Merge Sort
 This isn't a program - rather, a template function for merge sort. This should work with all the basic datatypes in C++, and takes a vector of values, the beginning point, and the ending point.
+
+## Knapsack
+This program is a recursive implementation of the 0-1 Knapsack problem. Numbers should be input into the knapsack1 file, or any text file, then run with the filename as an argument. First line should be knapsack capacity, then the following lines should all follow the format `<weight> <value>`.
