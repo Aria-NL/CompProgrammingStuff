@@ -46,11 +46,12 @@ int main(int argc, char* argv[]) {
 
     try {
         if(argc != 2) {
-            throw std::runtime_error ("No input filename given");
+            throw std::runtime_error("No input filename given");
         }
     }
     catch(std::runtime_error &excpt) {
         std::cout << excpt.what() << std::endl;
+        return 0;
     }
     try {
         input.open(argv[1]);
@@ -82,5 +83,6 @@ int main(int argc, char* argv[]) {
     }
     catch(std::runtime_error &excpt) {
         std::cout << excpt.what() << argv[1] << std::endl;
+        return 0;
     }
 }
