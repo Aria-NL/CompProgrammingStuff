@@ -23,7 +23,7 @@ bool isHappy(int number) {
 }
 
 int main() {
-    unsigned int inputNumber;
+    int inputNumber;
 
     std::cout << "Which number do you want to test? ";
     try {
