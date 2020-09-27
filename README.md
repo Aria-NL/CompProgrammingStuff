@@ -40,3 +40,6 @@ This isn't a program - rather, a template function for merge sort. This should w
 
 ## Knapsack
 This program is a recursive implementation of the 0-1 Knapsack problem. Numbers should be input into the knapsack1 file, or any text file, then run with the filename as an argument. First line should be knapsack capacity, then the following lines should all follow the format `<weight> <value>`.
+
+## Happy Numbers
+This program takes a number from the user and determines whether it is happy or not (see this wikipedia article https://en.wikipedia.org/wiki/Happy_number)
