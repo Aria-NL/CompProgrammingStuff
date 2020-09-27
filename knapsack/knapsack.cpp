@@ -2,10 +2,6 @@
 #include <fstream>
 #include <vector>
 
-int maximum (int x, int y) {
-    return (x > y) ? x : y;
-}
-
 int knapsack(int knapsackCap, std::vector<int> weights, std::vector<int> values, int itemNo, std::vector<int> &visited) {
     if(itemNo == 0 || knapsackCap == 0) {
         return 0;
