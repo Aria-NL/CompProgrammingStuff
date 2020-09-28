@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <set>
 #include <cmath>
 #include <algorithm>
 
@@ -14,9 +14,12 @@ int perfDigitalInv(int number) {
 }
 
 bool isHappy(int number) {
-    std::vector<int> seenNumbers;
-    while(number > 1 && !(std::find(seenNumbers.begin(), seenNumbers.end(), number) != seenNumbers.end())){
-        seenNumbers.push_back(number);
+    std::set<int> seenNumbers;
+    while(true){
+        auto result = seenNumbers.insert(number);
+        if(!result.second) {
+            break;
+        }
         number = perfDigitalInv(number);
     }
     return number == 1;
