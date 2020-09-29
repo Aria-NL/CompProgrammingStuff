@@ -234,6 +234,7 @@ int main(int argc, char* argv[]) {
             maze.printCurrent();
             maze.solveMaze(input, maze.getinstr());
         }
+        input.close();
     }
     catch(std::runtime_error &excpt) {
         std::cout << "an error occurred: " << excpt.what() << std::endl;
