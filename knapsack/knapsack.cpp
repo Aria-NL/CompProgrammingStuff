@@ -56,6 +56,8 @@ int main(int argc, char* argv[]) {
             input >> currentValue;
             values.push_back(currentValue);
         }
+
+        input.close();
         std::vector<bool> visited(weights.size());
         itemNo = values.size();
         std::cout << "With a capacity of " << knapsackCap << " kg, the total value is " << knapsack(knapsackCap, weights, values, itemNo, visited) << " Eur, leading to a total weight of ";
