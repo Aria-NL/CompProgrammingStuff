@@ -43,3 +43,6 @@ This program is a recursive implementation of the 0-1 Knapsack problem. Numbers 
 
 ## Happy Numbers
 This program takes a number from the user and determines whether it is happy or not (see this wikipedia article https://en.wikipedia.org/wiki/Happy_number)
+
+## Maze
+This program takes files (see maze1-9) and solves the maze inside them.
