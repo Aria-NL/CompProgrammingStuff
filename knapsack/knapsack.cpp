@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 
-int knapsack(int knapsackCap, std::vector<int> weights, std::vector<int> values, int itemNo, std::vector<int> &visited) {
+int knapsack(int knapsackCap, std::vector<int> weights, std::vector<int> values, int itemNo, std::vector<bool> &visited) {
     if(itemNo == 0 || knapsackCap == 0) {
         return 0;
     }
@@ -10,11 +10,11 @@ int knapsack(int knapsackCap, std::vector<int> weights, std::vector<int> values,
         return knapsack(knapsackCap, weights, values, itemNo - 1, visited);
     }
     else {
-        std::vector<int> storeOne(visited.size());
+        std::vector<bool> storeOne(visited.size());
         storeOne = visited;
-        std::vector<int> storeTwo(visited.size());
+        std::vector<bool> storeTwo(visited.size());
         storeTwo = visited;
-        storeOne.at(itemNo - 1) = 1;
+        storeOne.at(itemNo - 1) = true;
 
         int answerOne = values.at(itemNo - 1) + knapsack(knapsackCap - weights.at(itemNo - 1), weights, values, itemNo - 1, storeOne);
         int answerTwo = knapsack(knapsackCap, weights, values, itemNo - 1, storeTwo);
@@ -26,18 +26,14 @@ int knapsack(int knapsackCap, std::vector<int> weights, std::vector<int> values,
             visited = storeTwo;
             return answerTwo;
         }
-
     }
     return 0;
 }
 
 int main(int argc, char* argv[]) {
     std::ifstream input;
-    std::vector<int> weights;
-    std::vector<int> values;
-    int knapsackCap;
-    int currentValue;
-    int itemNo;
+    std::vector<int> weights, values;
+    int knapsackCap, currentValue, itemNo;
     int totalWeight = 0;
 
     try {
@@ -60,17 +56,17 @@ int main(int argc, char* argv[]) {
             input >> currentValue;
             values.push_back(currentValue);
         }
-        std::vector<int> visited(weights.size());
+        std::vector<bool> visited(weights.size());
         itemNo = values.size();
         std::cout << "With a capacity of " << knapsackCap << " kg, the total value is " << knapsack(knapsackCap, weights, values, itemNo, visited) << " Eur, leading to a total weight of ";
         for(int i = 0; i < itemNo; i++) {
-            if(visited.at(i) == 1) {
+            if(visited.at(i) == true) {
                 totalWeight += weights.at(i);
             }
         }
         std::cout << totalWeight << " kg" << std::endl << "The following items are included: ";
         for(int i = 0; i < itemNo; i++) {
-            if(visited.at(i) == 1) {
+            if(visited.at(i) == true) {
                 std::cout << "[" << weights.at(i) << "," << values.at(i) << "] ";
             }
         }
