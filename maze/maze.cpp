@@ -139,7 +139,7 @@ class Maze {
                     currentCoords.setcol(currentCoords.getcol() - 1);
                     if(verifyCoords() == 1) {
                            throw std::runtime_error("player outside maze or off the path"); 
-                        }
+                    }
                         break;
                 case 'r':
                     currentCoords.setcol(currentCoords.getcol() + 1);
