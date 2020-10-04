@@ -196,26 +196,15 @@ int main(int argc, char* argv[]) {
         if(argc != 2) {
             throw std::runtime_error("no input filename given");
         }
-    }
-    catch(std::runtime_error &excpt) {
-        std::cout << "an error occurred: " << excpt.what() << std::endl;
-        return 1;
-    }
-
-    try {
+        
         input.open(argv[1]);
         if(!input.is_open()) {
-            throw std::runtime_error("could not open input file ");
+            std::string filename = static_cast<std::string>(argv[1]);
+            std::string error = ("could not open input file " + filename);
+            throw std::runtime_error(error);
         }
-    }
-    catch(std::runtime_error &excpt) {
-        std::cout << "an error occurred: " << excpt.what() << argv[1] << std::endl;
-        return 1;
-    }
 
-    try {
         int height, width, startRow, startCol, finishRow, finishCol;
-
         input >> height >> width;
         if(input.fail()) {
             throw std::runtime_error("could not read height and width of the maze");
