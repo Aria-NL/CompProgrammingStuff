@@ -46,3 +46,6 @@ This program takes a number from the user and determines whether it is happy or 
 
 ## Maze
 This program takes files (see maze1-9) and solves the maze inside them.
+
+## Stack
+This program emulates a stack with a vector. Users can input the commands "push", "pop", "top", and "list".
