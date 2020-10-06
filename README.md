@@ -49,3 +49,6 @@ This program takes files (see maze1-9) and solves the maze inside them.
 
 ## Stack
 This program emulates a stack with a vector. Users can input the commands "push", "pop", "top", and "list".
+
+## BST
+This program constructs a Binary Search Tree based on user input, searches for a value inside the tree, then lists some general specs about the tree.
