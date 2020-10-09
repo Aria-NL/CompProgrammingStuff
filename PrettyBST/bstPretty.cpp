@@ -1,22 +1,25 @@
 #include <iostream>
+#include <ios>
+#include <iomanip>
 #include <vector>
-#include <algorithm>
 #include <climits>
 #include "matrix.h"
 
 class Node{
     public:
         Node();
-        Node(int val);
+        Node(int val, int layer);
         ~Node();
         Node *left;
         Node *right;
         int value;
+        int layer;
     private:
 };
 
-Node::Node(int val) {
+Node::Node(int val, int layr) {
     value = val;
+    layer = layr;
     left = nullptr;
     right = nullptr;
 }
@@ -39,13 +42,14 @@ class BST{
         int getHeight();
         void prettyPrint();
     private:
-        void doKey(Node *&root, int newKey);
+        void doKey(Node *&root, int newKey, int &layer);
         std::vector<int> doInOrder(Node *root, std::vector<int> &sorted);
         bool doHasKey(Node *root, int searchKey);
         Node *root;
         int doGetHeight(Node *root);
         int countNodes(Node *root);
-        char checkSides(Node *root);
+        std::vector<int> layers;
+        std::vector<int> getLayers(Node *root, std::vector<int> &layers);
 };
 
 BST::BST() {
@@ -59,22 +63,47 @@ void BST::prettyPrint() {
         return;
     }
     Matrix mat(getHeight(), countNodes(root), INT_MAX);
-    mat.at(0,0) = root->value;
-    mat.at(countNodes(root->left),0) = mat.at(0,0);
-    std::cout << mat.at(countNodes(root->left),0) << std::endl;
+    getLayers(root, layers);
+    for(int i = 0; i < countNodes(root); i++) {
+        mat.at(layers.at(i),i) = inOrder().at(i);
+    }
+    
+    for(int i = 0; i < mat.rows(); i++) {
+        for(int j = 0; j < mat.columns(); j++) {
+            std::cout << "-----"; 
+        }
+        std::cout << "-" << std::endl << "|";
+        for(int j = 0; j < mat.columns(); j++) {
+            if(mat.at(i,j) != INT_MAX) {
+                std::cout << std::setw(4) << mat.at(i,j) << "|";
+            }
+            else {
+                std::cout << "    " << "|";
+            }
+        }
+        std::cout << std::endl;
+    }
+    for(int j = 0; j < mat.columns(); j++) {
+            std::cout << "-----"; 
+    }
+    std::cout << "-" << std::endl;
 }
-
-void BST::insertKey(int newKey) { doKey(root, newKey); }
-void BST::doKey(Node *&root, int newKey) {
+void BST::insertKey(int newKey) { 
+        int layer;
+        doKey(root, newKey, layer); 
+    }
+void BST::doKey(Node *&root, int newKey, int &layer) {
     if(root == nullptr) {
-        root = new Node(newKey);
+        root = new Node(newKey, layer);
         return;
     }
     else if(newKey < root->value) {
-        doKey(root->left, newKey);
+        layer++;
+        doKey(root->left, newKey, layer);
     }
     else {
-        doKey(root->right, newKey);
+        layer++;
+        doKey(root->right, newKey, layer);
     }
 }
 
@@ -110,12 +139,22 @@ std::vector<int> BST::doInOrder(Node *root, std::vector<int> &sorted) {
         return sorted;
     }
 }
+std::vector<int> BST::getLayers(Node *root, std::vector<int> &layers) {
+    if(root != nullptr) {
+        getLayers(root->left,layers);
+        layers.push_back(root->layer);
+        getLayers(root->right, layers);
+        return layers;
+    }
+    else {
+        return layers;
+    }
+}
 int BST::getHeight() { return doGetHeight(root); }
 int BST::doGetHeight(Node *root) {
     if(root == nullptr) {
         return 0;
     }
-
     int lHeight = doGetHeight(root->left);
     int rHeight = doGetHeight(root->right);
     if(lHeight > rHeight) {
@@ -124,7 +163,6 @@ int BST::doGetHeight(Node *root) {
     else {
         return rHeight + 1;
     }
-
 }
 int BST::countNodes(Node *root) {
     if(root == nullptr) {
@@ -135,28 +173,8 @@ int BST::countNodes(Node *root) {
     count += countNodes(root->right);
     return count;
 }
-
-
-char BST::checkSides(Node *root) {
-    int code;
-    if(root->left != nullptr && root->right == nullptr) {
-        code == 'l';
-    }
-    if(root->right != nullptr && root->left == nullptr) {
-        code == 'r';
-    }
-    else {
-        code == 'b';
-    }
-    return code;
-}
-
-
-
-
 int main() {
     int buffer;
-    int search;
     std::vector<int> vals;
     BST tree;
     std::cout << "Enter the numbers to be stored (end with a letter): ";
@@ -171,23 +189,11 @@ int main() {
     for(int i = 0; i < vals.size() - 1; i++) {
         tree.insertKey(vals.at(i));
     }
-    std::cin.ignore();
-    std::cout << "Which number do you want to look up? ";
-    std::cin >> search;
-    std::cout << search << " is in the tree: ";
-    if(tree.hasKey(search)) {
-        std::cout << "yes" << std::endl;
-    }
-    else {
-        std::cout << "no" << std::endl;
-    }
     std::cout << "The numbers in sorted order: ";
     for(int i = 0; i < tree.inOrder().size(); i++) {
         std::cout << tree.inOrder().at(i) << " ";
     }
-    std::cout << std::endl << "Height of the tree: " << tree.getHeight() << std::endl;
+    std::cout << std::endl;
     tree.prettyPrint();
     return 0;
 }
-
-
