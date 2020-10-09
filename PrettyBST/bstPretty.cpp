@@ -177,7 +177,7 @@ int main() {
     int buffer;
     std::vector<int> vals;
     BST tree;
-    std::cout << "Enter the numbers to be stored (end with a letter): ";
+    std::cout << "Enter the numbers to be stored: ";
     while(true) {
         if(std::cin.fail()) {
             std::cin.clear();
