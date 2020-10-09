@@ -52,3 +52,6 @@ This program emulates a stack with a vector. Users can input the commands "push"
 
 ## BST
 This program constructs a Binary Search Tree based on user input, searches for a value inside the tree, then lists some general specs about the tree.
+
+## BST Pretty Print
+This is an extension of BST. It prints out the BST as a matrix.
