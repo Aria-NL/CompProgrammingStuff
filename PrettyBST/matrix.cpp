@@ -22,7 +22,4 @@ int& Matrix::at(const unsigned int row, const unsigned int column){
     return data.at(row).at(column);
 }
 
-void Matrix::move(const unsigned int row, const unsigned int column, int& orig) {
-    data.at(row).at(column) = orig;
-    orig = INT_MAX;
-}
+
